@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.berkedursunoglu.kapimda.MainActivity
 import com.berkedursunoglu.kapimda.R
+import com.berkedursunoglu.kapimda.presentation.ui.login.LoginActivity
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -31,7 +32,7 @@ class OnboardingActivity : AppCompatActivity() {
         shared = this@OnboardingActivity.getSharedPreferences("onBoarding",Context.MODE_PRIVATE)
         var isFirst = shared.getBoolean("invisibleOnboarding", true)
         if (!isFirst){
-            startActivity(Intent(this@OnboardingActivity,MainActivity::class.java))
+            startActivity(Intent(this@OnboardingActivity, LoginActivity::class.java))
             finish()
         }
     }

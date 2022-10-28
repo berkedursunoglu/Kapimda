@@ -7,4 +7,7 @@
     <string name="safety_carrier">Hızlı Kargo</string>
     <string name="discount">İndirim Yağmuru</string>
     <string name="discount_message">Binlerce üründe indirim yağmuru seni bekliyor.</string>
+    <string name="login_success">Giriş Başarılı</string>
+    <string name="passwords_field_not_equal">Girdiğiniz şifreler aynı değil kontrol ediniz.</string>
+    <string name="is_not_empty_fields">Alanlar Boş Bırakılamaz</string>
 </resources>

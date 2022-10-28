@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.berkedursunoglu.kapimda.MainActivity
 import com.berkedursunoglu.kapimda.databinding.FragmentOnboardingThirdBinding
+import com.berkedursunoglu.kapimda.presentation.ui.login.LoginActivity
 
 
 class OnboardingThirdFragment : Fragment() {
@@ -52,7 +53,7 @@ class OnboardingThirdFragment : Fragment() {
     }
 
     private fun closeView(view: View){
-        startActivity(Intent(requireContext(),MainActivity::class.java))
+        startActivity(Intent(requireContext(),LoginActivity::class.java))
         requireActivity().finish()
         invisibleOnboardingActivity()
     }

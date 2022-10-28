@@ -17,8 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="@string/onboarding_welcome_message"
         android:textAlignment="center"
+        android:text="@string/onboarding_welcome_message"
+
         android:textColor="@color/app_text_first_color"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

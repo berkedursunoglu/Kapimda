@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.berkedursunoglu.kapimda.MainActivity
 import com.berkedursunoglu.kapimda.databinding.FragmentOnboardingSecondBinding
+import com.berkedursunoglu.kapimda.presentation.ui.login.LoginActivity
 
 class OnboardingSecondFragment : Fragment() {
 
@@ -41,7 +42,7 @@ class OnboardingSecondFragment : Fragment() {
         }
         binding.btnClose.setOnClickListener {
             invisibleOnboardingActivity()
-            startActivity(Intent(requireContext(),MainActivity::class.java))
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finish()
         }
     }
