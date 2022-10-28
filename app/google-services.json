@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "936833519902",
+    "project_id": "kapimda-ac213",
+    "storage_bucket": "kapimda-ac213.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936833519902:android:4b3603405e3e53de12b90f",
+        "android_client_info": {
+          "package_name": "com.berkedursunoglu.kapimda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "936833519902-rv24te9oj20lms70mgdugqt1to4chrps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHXh1EL409pWrOog8lW_execGwoJ16ys0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "936833519902-rv24te9oj20lms70mgdugqt1to4chrps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
