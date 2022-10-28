@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onboarding_nav_graph"
+    app:startDestination="@id/onboardingFirstFragment">
+
+    <fragment
+        android:id="@+id/onboardingFirstFragment"
+        android:name="com.berkedursunoglu.kapimda.presentation.ui.onboarding.OnboardingFirstFragment"
+        android:label="OnboardingFirstFragment"
+        tools:layout="@layout/fragment_onboarding_first">
+        <action
+            android:id="@+id/action_onboardingFirstFragment_to_onboardingSecondFragment"
+            app:destination="@id/onboardingSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingSecondFragment"
+        android:name="com.berkedursunoglu.kapimda.presentation.ui.onboarding.OnboardingSecondFragment"
+        android:label="OnboardingSecondFragment"
+        tools:layout="@layout/fragment_onboarding_second">
+        <action
+            android:id="@+id/action_onboardingSecondFragment_to_onboardingThirdFragment"
+            app:destination="@id/onboardingThirdFragment" />
+        <action
+            android:id="@+id/action_onboardingSecondFragment_to_onboardingFirstFragment"
+            app:destination="@id/onboardingFirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingThirdFragment"
+        android:name="com.berkedursunoglu.kapimda.presentation.ui.onboarding.OnboardingThirdFragment"
+        android:label="OnboardingThirdFragment"
+        tools:layout="@layout/fragment_onboarding_third">
+        <action
+            android:id="@+id/action_onboardingThirdFragment_to_onboardingSecondFragment"
+            app:destination="@id/onboardingSecondFragment" />
+    </fragment>
+</navigation>

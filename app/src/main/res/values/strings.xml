@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Kapıımda</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onboarding_welcome_message">Kapımda Uygulamasına Hoşgeldiniz</string>
+    <string name="onboarding_first_desc">Elektronik, Mücevher, Erkek Giyim, Kadın Giyim\'de aradığınız her şey parmağınızın ucunda.</string>
+    <string name="safety_carrier">Hızlı Kargo</string>
+    <string name="discount">İndirim Yağmuru</string>
+    <string name="discount_message">Binlerce üründe indirim yağmuru seni bekliyor.</string>
 </resources>
