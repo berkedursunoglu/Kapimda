@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.databinding.FragmentOnboardingFirstBinding
-import com.berkedursunoglu.kapimda.databinding.FragmentOnboardingSecondBinding
 
 class OnboardingFirstFragment : Fragment() {
 
