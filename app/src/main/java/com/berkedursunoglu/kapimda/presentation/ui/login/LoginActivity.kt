@@ -28,5 +28,4 @@ class LoginActivity : AppCompatActivity() {
         val navigationBottom = findViewById<BottomNavigationView>(R.id.tabLayout)
         NavigationUI.setupWithNavController(navigationBottom,navController)
     }
-
 }

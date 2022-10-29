@@ -8,11 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.berkedursunoglu.kapimda.R
-import com.berkedursunoglu.kapimda.data.repository.FirebaseModule
 import com.berkedursunoglu.kapimda.databinding.FragmentLoginBinding
-import com.berkedursunoglu.kapimda.databinding.FragmentRegisterBinding
 import com.berkedursunoglu.kapimda.presentation.ui.mainpage.MainPage
+import com.berkedursunoglu.kapimda.presentation.ui.viewmodels.LoginListener
+import com.berkedursunoglu.kapimda.presentation.ui.viewmodels.LoginViewModel
 
 
 class LoginFragment : Fragment() {
@@ -20,7 +21,7 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var email:String
     private lateinit var password:String
-    private lateinit var firebase:FirebaseModule
+    private lateinit var viewModel:LoginViewModel
 
 
 
@@ -28,8 +29,8 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-        firebase = FirebaseModule()
         return binding.root
     }
 
@@ -38,7 +39,6 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             login()
         }
-
         binding.btnpasswordVisibility.setOnClickListener {
             passwordVisibility()
         }
@@ -49,13 +49,16 @@ class LoginFragment : Fragment() {
         email = binding.etEmail.text.toString()
         password = binding.etPassword.text.toString()
         if (email.isNotEmpty() && password.isNotEmpty()){
-            firebase.login(email,password).addOnSuccessListener {
-                Toast.makeText(requireContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show()
-                startActivity(Intent(requireContext(), MainPage::class.java))
-                requireActivity().finish()
-            }.addOnFailureListener {
-                Toast.makeText(requireContext(),it.localizedMessage,Toast.LENGTH_LONG).show()
-            }
+            viewModel.login(email,password,object  : LoginListener{
+                override fun success() {
+                    Toast.makeText(requireContext(),"Giriş Başarılı.",Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(requireContext(),MainPage::class.java))
+                    requireActivity().finish()
+                }
+                override fun error(message: String) {
+                    Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 

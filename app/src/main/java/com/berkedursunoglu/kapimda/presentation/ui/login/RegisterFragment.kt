@@ -1,5 +1,6 @@
 package com.berkedursunoglu.kapimda.presentation.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.fragment.app.Fragment
@@ -8,11 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.berkedursunoglu.kapimda.R
-import com.berkedursunoglu.kapimda.data.repository.FirebaseModule
 import com.berkedursunoglu.kapimda.databinding.FragmentRegisterBinding
-import com.berkedursunoglu.kapimda.presentation.ui.viewmodel.RegisterFragmentViewModel
+import com.berkedursunoglu.kapimda.presentation.ui.mainpage.MainPage
+import com.berkedursunoglu.kapimda.presentation.ui.viewmodels.RegisterFragmentViewModel
+import com.google.firebase.auth.AuthResult
 
 
 class RegisterFragment : Fragment() {
@@ -23,7 +24,6 @@ class RegisterFragment : Fragment() {
     private lateinit var password: String
     private lateinit var passwordConfirmation: String
     private lateinit var username: String
-    private lateinit var firebase: FirebaseModule
     private val dialog: RegisterDialog = RegisterDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,33 +60,42 @@ class RegisterFragment : Fragment() {
             if (email.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && passwordConfirmation.isNotEmpty()) {
                 if (password == passwordConfirmation) {
                     dialog.show(requireActivity().supportFragmentManager, "RegisterDialog")
-                    firebase = FirebaseModule()
-                    firebase.register(email, password).addOnSuccessListener {
-                        it.let {
-                            if (it.user != null) {
-                                firebase.registerWithUsername(username,
-                                    it.user!!.uid,
-                                    email,
-                                    password).addOnSuccessListener {
-                                    dialog.succes()
-                                    navigate()
-                                }
+                    viewModel.register(email, password, object : RegisterAuthListener {
+                        override fun onRegisterSuccess(result: AuthResult) {
+                            result.user?.uid?.let { it1 ->
+                                viewModel.registerWithuserName(email,
+                                    password,
+                                    username,
+                                    it1,
+                                    object : RegisterFireStoreListener {
+
+                                        override fun onSuccess() {
+                                            dialog.succes()
+                                            navigate()
+                                        }
+
+                                        override fun onFailure(result: Exception) {
+                                            result.localizedMessage?.let { it2 -> dialog.error(it2) }
+                                        }
+                                    })
                             }
                         }
 
-
-                    }.addOnFailureListener {
-
-                        it.localizedMessage?.let { it1 -> dialog.error(it1) }
-
-                    }
+                        override fun onRegisterFailure(result: Exception) {
+                            result.localizedMessage?.let { it1 -> dialog.error(it1) }
+                        }
+                    })
                 } else {
-                    Toast.makeText(requireContext(), getString(R.string.passwords_field_not_equal), Toast.LENGTH_LONG)
+                    Toast.makeText(requireContext(),
+                        getString(R.string.passwords_field_not_equal),
+                        Toast.LENGTH_LONG)
                         .show()
                 }
             } else {
 
-                Toast.makeText(requireContext(), getString(R.string.is_not_empty_fields), Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(),
+                    getString(R.string.is_not_empty_fields),
+                    Toast.LENGTH_LONG)
                     .show()
 
             }
@@ -94,25 +103,25 @@ class RegisterFragment : Fragment() {
     }
 
     private fun navigate() {
-        val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
-        this@RegisterFragment.findNavController().navigate(action)
+        startActivity(Intent(requireContext(),MainPage::class.java))
+        requireActivity().finish()
     }
 
-    private fun passwordVisibility(){
-        if(binding.etPassword.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD){
+    private fun passwordVisibility() {
+        if (binding.etPassword.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
             binding.etPassword.inputType = InputType.TYPE_CLASS_TEXT
             binding.btnpasswordVisibility.setImageResource(R.drawable.ic_baseline_visibility_off_24)
-        }else{
+        } else {
             binding.etPassword.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
             binding.btnpasswordVisibility.setImageResource(R.drawable.ic_baseline_visibility_24)
         }
     }
 
-    private fun passwordConfirmVisibility(){
-        if(binding.etPasswordAgain.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD){
+    private fun passwordConfirmVisibility() {
+        if (binding.etPasswordAgain.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
             binding.etPasswordAgain.inputType = InputType.TYPE_CLASS_TEXT
             binding.btnpasswordConfirmVisibility.setImageResource(R.drawable.ic_baseline_visibility_off_24)
-        }else{
+        } else {
             binding.etPasswordAgain.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
             binding.btnpasswordConfirmVisibility.setImageResource(R.drawable.ic_baseline_visibility_24)
         }
