@@ -1,4 +1,4 @@
-package com.berkedursunoglu.kapimda.presentation.ui.viewmodels
+package com.berkedursunoglu.kapimda.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth

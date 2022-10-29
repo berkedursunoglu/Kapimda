@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
-import com.berkedursunoglu.kapimda.MainActivity
 import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.presentation.ui.login.LoginActivity
 
@@ -25,7 +24,7 @@ class OnboardingActivity : AppCompatActivity() {
 
     fun initNavigation(){
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.onboardingContainerView) as NavHostFragment
     }
 
     fun isFirst(){

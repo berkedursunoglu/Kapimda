@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.databinding.FragmentLoginBinding
 import com.berkedursunoglu.kapimda.presentation.ui.mainpage.MainPage
-import com.berkedursunoglu.kapimda.presentation.ui.viewmodels.LoginListener
-import com.berkedursunoglu.kapimda.presentation.ui.viewmodels.LoginViewModel
+import com.berkedursunoglu.kapimda.presentation.viewmodels.LoginListener
+import com.berkedursunoglu.kapimda.presentation.viewmodels.LoginViewModel
 
 
 class LoginFragment : Fragment() {
@@ -21,7 +21,7 @@ class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var email:String
     private lateinit var password:String
-    private lateinit var viewModel:LoginViewModel
+    private lateinit var viewModel: LoginViewModel
 
 
 
@@ -46,10 +46,10 @@ class LoginFragment : Fragment() {
 
 
     fun login(){
-        email = binding.etEmail.text.toString()
-        password = binding.etPassword.text.toString()
+        email = binding.etEmail.text?.trim().toString()
+        password = binding.etPassword.text?.trim().toString()
         if (email.isNotEmpty() && password.isNotEmpty()){
-            viewModel.login(email,password,object  : LoginListener{
+            viewModel.login(email,password,object  : LoginListener {
                 override fun success() {
                     Toast.makeText(requireContext(),"Giriş Başarılı.",Toast.LENGTH_SHORT).show()
                     startActivity(Intent(requireContext(),MainPage::class.java))

@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun initNavigation(){
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.loginContainerView) as NavHostFragment
         val navController = navHostFragment.navController
         val navigationBottom = findViewById<BottomNavigationView>(R.id.tabLayout)
         NavigationUI.setupWithNavController(navigationBottom,navController)

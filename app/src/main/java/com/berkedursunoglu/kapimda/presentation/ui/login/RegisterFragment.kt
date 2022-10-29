@@ -11,8 +11,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.databinding.FragmentRegisterBinding
+import com.berkedursunoglu.kapimda.presentation.ui.dialogs.RegisterDialog
 import com.berkedursunoglu.kapimda.presentation.ui.mainpage.MainPage
-import com.berkedursunoglu.kapimda.presentation.ui.viewmodels.RegisterFragmentViewModel
+import com.berkedursunoglu.kapimda.presentation.viewmodels.RegisterFragmentViewModel
 import com.google.firebase.auth.AuthResult
 
 
@@ -52,10 +53,10 @@ class RegisterFragment : Fragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            email = binding.etEmail.text.toString()
-            username = binding.etUserName.text.toString()
-            password = binding.etPassword.text.toString()
-            passwordConfirmation = binding.etPasswordAgain.text.toString()
+            email = binding.etEmail.text?.trim().toString()
+            username = binding.etUserName.text?.trim().toString()
+            password = binding.etPassword.text?.trim().toString()
+            passwordConfirmation = binding.etPasswordAgain.text?.trim().toString()
 
             if (email.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && passwordConfirmation.isNotEmpty()) {
                 if (password == passwordConfirmation) {
