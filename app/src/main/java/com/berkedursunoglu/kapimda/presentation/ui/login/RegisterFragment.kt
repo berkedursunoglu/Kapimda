@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.databinding.FragmentRegisterBinding
+import com.berkedursunoglu.kapimda.presentation.ui.dialogs.RegisterDialog
 import com.berkedursunoglu.kapimda.presentation.ui.mainpage.MainPage
 import com.berkedursunoglu.kapimda.presentation.ui.viewmodels.RegisterFragmentViewModel
 import com.google.firebase.auth.AuthResult

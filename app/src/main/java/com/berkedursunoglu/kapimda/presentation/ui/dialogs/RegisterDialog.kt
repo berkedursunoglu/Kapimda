@@ -1,4 +1,4 @@
-package com.berkedursunoglu.kapimda.presentation.ui.login
+package com.berkedursunoglu.kapimda.presentation.ui.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater
