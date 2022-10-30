@@ -10,4 +10,5 @@
     <string name="login_success">Giriş Başarılı</string>
     <string name="passwords_field_not_equal">Girdiğiniz şifreler aynı değil kontrol ediniz.</string>
     <string name="is_not_empty_fields">Alanlar Boş Bırakılamaz</string>
+    <string name="is_buy">Satın Alma işlemini gerçekleştirmek istiyor musunuz?</string>
 </resources>

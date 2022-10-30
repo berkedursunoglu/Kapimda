@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.berkedursunoglu.kapimda.data.models.BasketModel
-import com.berkedursunoglu.kapimda.data.models.ProductItem
 import com.berkedursunoglu.kapimda.databinding.BasketAdapterRawBinding
-import com.berkedursunoglu.kapimda.databinding.ProductAdapterRawBinding
 import com.berkedursunoglu.kapimda.utils.Extensions.getImage
 
-class BasketFragmentAdapter() : RecyclerView.Adapter<BasketViewHolder>() {
+class BasketFragmentAdapter(var listener: BasketItemOnClickListener) : RecyclerView.Adapter<BasketViewHolder>() {
 
     private var items = ArrayList<BasketModel>()
     private lateinit var binding: BasketAdapterRawBinding
@@ -24,6 +22,25 @@ class BasketFragmentAdapter() : RecyclerView.Adapter<BasketViewHolder>() {
 
     override fun onBindViewHolder(holder: BasketViewHolder, position: Int) {
         holder.bind(items[position],holder.itemView.context)
+        var count:Int = Integer.parseInt(binding.tvProductCount.text.toString())
+
+        holder.binding.btnAddSize.setOnClickListener {
+            count ++
+            binding.tvProductCount.text = count.toString()
+
+        }
+
+        holder.binding.btnRemoveSize.setOnClickListener {
+            if (count != 1){
+                count --
+                binding.tvProductCount.text = count.toString()
+            }
+        }
+
+        holder.itemView.setOnClickListener {
+            val basketModel = BasketModel(count.toLong(),items[position].itemid,items[position].itemname,items[position].itemPic,items[position].itemPrice,items[position].itemtotalprice)
+            listener.onClick(basketModel,count)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -45,4 +62,9 @@ class BasketViewHolder(val binding: BasketAdapterRawBinding) : RecyclerView.View
         binding.imageView.getImage(item.itemPic,context,binding.imageView)
         binding.tvProductCount.text = item.itemcount.toString()
     }
+
+}
+
+interface BasketItemOnClickListener{
+    fun onClick(item: BasketModel, itemCount: Int)
 }
