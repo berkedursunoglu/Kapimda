@@ -11,7 +11,7 @@
     tools:context=".presentation.ui.onboarding.OnboardingSecondFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivProductPics"
         android:layout_width="225dp"
         android:layout_height="350dp"
         android:layout_marginTop="20dp"
@@ -47,7 +47,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/ivProductPics"
         tools:ignore="TextContrastCheck" />
 
     <ImageButton

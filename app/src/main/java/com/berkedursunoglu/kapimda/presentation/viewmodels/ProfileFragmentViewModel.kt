@@ -2,8 +2,11 @@ package com.berkedursunoglu.kapimda.presentation.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ProfileFragmentViewModel:ViewModel() {
 
@@ -14,13 +17,15 @@ class ProfileFragmentViewModel:ViewModel() {
     val userEmail = MutableLiveData<String>()
 
     fun setField(){
-        firebase.currentUser?.let {
-            fireBaseStore.collection("users").document(it.uid).get().addOnSuccessListener {
-                userName.value = it.getString("username")
-                userEmail.value = it.getString("email")
-            }.addOnFailureListener {
-                userName.value = "null"
-                userEmail.value = "null"
+        viewModelScope.launch(Dispatchers.IO) {
+            firebase.currentUser?.let {
+                fireBaseStore.collection("users").document(it.uid).get().addOnSuccessListener {
+                    userName.value = it.getString("username")
+                    userEmail.value = it.getString("email")
+                }.addOnFailureListener {
+                    userName.value = "null"
+                    userEmail.value = "null"
+                }
             }
         }
     }
