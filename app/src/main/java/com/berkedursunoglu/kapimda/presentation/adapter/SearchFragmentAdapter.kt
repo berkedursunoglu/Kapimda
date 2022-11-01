@@ -16,6 +16,7 @@ class SearchFragmentAdapter(var listener: SearchSetOnClickListener) : RecyclerVi
     private var items = ArrayList<ProductItem>()
     private lateinit var binding: ProductAdapterRawBinding
     private var counter = 0
+    private var searchArray = items
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -59,6 +60,23 @@ class SearchFragmentAdapter(var listener: SearchSetOnClickListener) : RecyclerVi
         this.items.addAll(items)
         notifyDataSetChanged()
     }
+
+    fun search(search:String){
+        if (search.isEmpty() ){
+            this.items.clear()
+            this.items.addAll(searchArray)
+        }else{
+            var filteredList = ArrayList<ProductItem>()
+            this.searchArray.forEach {
+                if (it.title.lowercase().contains(search.lowercase())){
+                    filteredList.add(it)
+                }
+            }
+            this.items = filteredList
+        }
+        notifyDataSetChanged()
+    }
+
 }
 
 class SearchViewHolder(val binding: ProductAdapterRawBinding) : RecyclerView.ViewHolder(binding.root) {

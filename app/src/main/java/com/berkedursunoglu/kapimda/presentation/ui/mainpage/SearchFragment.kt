@@ -40,6 +40,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerviewSearch.layoutManager = GridLayoutManager(requireContext(),2)
         viewModel.getAllProducts()
+        binding.searchView.clearFocus()
         adapter = SearchFragmentAdapter(object : SearchSetOnClickListener{
             override fun goToDetail(item: ProductItem) {
                 val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment()
@@ -65,7 +66,10 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-                Log.d("SearchView",p0.toString())
+                p0.let {
+                    adapter.search(it!!)
+                    Log.d("Search",p0!!)
+                }
                 return false
             }
         })
