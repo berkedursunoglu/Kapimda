@@ -6,12 +6,14 @@ import com.berkedursunoglu.kapimda.data.models.BasketModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class BasketFragmentViewModel :ViewModel() {
+class BasketFragmentViewModel() :ViewModel() {
+
 
     private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     val uid = firebaseAuth.uid
     var basket = ArrayList<BasketModel> ()
+    var exception = MutableLiveData<String>()
 
     var basketList = MutableLiveData<ArrayList<BasketModel>>()
 
@@ -41,12 +43,16 @@ class BasketFragmentViewModel :ViewModel() {
         updateBasket.put("itemid",model.itemid)
         updateBasket.put("itemtotalprice",model.itemPrice*itemCount)
 
-        firebaseFirestore.collection("users").document(uid.toString()).collection("basket").document(model.itemid.toString()).set(updateBasket)
+        firebaseFirestore.collection("users").document(uid.toString()).collection("basket").document(model.itemid.toString()).set(updateBasket).addOnFailureListener {
+            exception.value = it.localizedMessage
+        }
     }
 
     fun deleteBasket(){
         basket.forEach {
-            firebaseFirestore.collection("users").document(uid.toString()).collection("basket").document(it.itemid.toString()).delete()
+            firebaseFirestore.collection("users").document(uid.toString()).collection("basket").document(it.itemid.toString()).delete().addOnFailureListener {
+                exception.value = it.localizedMessage
+            }
         }
     }
 }

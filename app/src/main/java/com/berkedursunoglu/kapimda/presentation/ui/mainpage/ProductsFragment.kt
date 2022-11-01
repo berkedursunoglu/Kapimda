@@ -16,7 +16,7 @@ import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.data.models.ProductItem
 import com.berkedursunoglu.kapimda.databinding.FragmentProductsBinding
 import com.berkedursunoglu.kapimda.presentation.adapter.ProductFragmentAdapter
-import com.berkedursunoglu.kapimda.presentation.adapter.ProductSetOnClickListener
+import com.berkedursunoglu.kapimda.utils.ProductSetOnClickListener
 import com.berkedursunoglu.kapimda.presentation.viewmodels.ProductFragmentViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
@@ -57,6 +57,10 @@ class ProductsFragment : Fragment() {
         viewModel.getProductItem.observe(viewLifecycleOwner, Observer{
             productAdapter.addItems(it)
             binding.rvProduct.adapter = productAdapter
+        })
+
+        viewModel.exception.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
         })
     }
 

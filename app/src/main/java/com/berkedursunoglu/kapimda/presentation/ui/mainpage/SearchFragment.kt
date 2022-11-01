@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -130,6 +131,10 @@ class SearchFragment : Fragment() {
                 })
             }
         }
+
+        viewModel.exception.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(),it, Toast.LENGTH_SHORT).show()
+        })
     }
 
     fun checkBoxListener(){
