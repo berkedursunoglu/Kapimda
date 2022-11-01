@@ -46,8 +46,10 @@ class DetailFragment : Fragment() {
             binding.tvProductSize.text = itemCount.toString()
         }
         binding.btnRemoveSize.setOnClickListener {
-            itemCount --
-            binding.tvProductSize.text = itemCount.toString()
+            if (itemCount != 1) {
+                itemCount --
+                binding.tvProductSize.text = itemCount.toString()
+            }
         }
 
         binding.btnAddBasket.setOnClickListener {

@@ -6,4 +6,7 @@ import retrofit2.Call
 
 interface ApiHelper {
     suspend fun getAllProducts(): Call<Product>
+
+    suspend fun getByCategory(category: String): Call<Product>
+
 }

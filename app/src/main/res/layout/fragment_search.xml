@@ -1,14 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.ui.mainpage.SearchFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".presentation.ui.mainpage.SearchFragment">
 
-</FrameLayout>
+
+        <TableLayout
+            android:id="@+id/searchTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_base_color"
+            app:layout_constraintBottom_toTopOf="@+id/cbElectronics"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:queryHint="Arama Yap..."
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="1dp" />
+
+        </TableLayout>
+
+        <CheckBox
+            android:id="@+id/cbElectronics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elektronik"
+            android:buttonTint="@color/white"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/cbWomen"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchTabLayout" />
+
+        <CheckBox
+            android:id="@+id/cbWomen"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kadın"
+            android:buttonTint="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/cbMen"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cbElectronics"
+            app:layout_constraintTop_toTopOf="@+id/cbElectronics" />
+
+        <CheckBox
+            android:id="@+id/cbMen"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Erkek"
+            android:buttonTint="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/cbJewelery"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cbWomen"
+            app:layout_constraintTop_toTopOf="@+id/cbElectronics" />
+
+        <CheckBox
+            android:id="@+id/cbJewelery"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Takı"
+            android:buttonTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cbMen"
+            app:layout_constraintTop_toTopOf="@+id/cbElectronics" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewSearch"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbElectronics" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

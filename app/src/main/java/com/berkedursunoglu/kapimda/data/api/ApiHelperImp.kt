@@ -10,4 +10,8 @@ class ApiHelperImp @Inject constructor(private val apiService:ProductApi) :ApiHe
     override suspend fun getAllProducts(): Call<Product> {
         return apiService.getAllProducts()
     }
+
+    override suspend fun getByCategory(category: String): Call<Product> {
+       return  apiService.getByCategory(category)
+    }
 }

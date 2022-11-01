@@ -5,4 +5,5 @@ import javax.inject.Inject
 
 class ProductRepository @Inject constructor(private val apiHelper:ApiHelper) {
     suspend fun getAllProducts() = apiHelper.getAllProducts()
+    suspend fun getByCategory(category: String) = apiHelper.getByCategory(category)
 }
