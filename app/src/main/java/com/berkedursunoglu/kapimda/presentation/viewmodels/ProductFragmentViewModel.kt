@@ -27,6 +27,7 @@ class ProductFragmentViewModel @Inject constructor(private val productRepository
 
 
     val getProductItem = MutableLiveData<Product>()
+    val exception = MutableLiveData<String>()
 
 
     fun getAllProducts() {
@@ -41,6 +42,7 @@ class ProductFragmentViewModel @Inject constructor(private val productRepository
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
+                    exception.value = t.localizedMessage
                 }
             })
         }

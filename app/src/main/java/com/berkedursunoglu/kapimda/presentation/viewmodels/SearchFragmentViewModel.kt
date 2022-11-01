@@ -28,6 +28,7 @@ class SearchFragmentViewModel @Inject constructor(private val productRepository:
     val getByCategoryMen = MutableLiveData<Product>()
     val getByCategoryWomen = MutableLiveData<Product>()
     val getByCategoryElectronics = MutableLiveData<Product>()
+    val exception = MutableLiveData<String>()
 
     fun getAllProducts() {
         viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
@@ -41,6 +42,7 @@ class SearchFragmentViewModel @Inject constructor(private val productRepository:
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
+                    exception.value = t.localizedMessage
                 }
             })
         }
@@ -56,7 +58,7 @@ class SearchFragmentViewModel @Inject constructor(private val productRepository:
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
-
+                    exception.value = t.localizedMessage
                 }
             })
         }
@@ -71,7 +73,7 @@ class SearchFragmentViewModel @Inject constructor(private val productRepository:
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
-
+                    exception.value = t.localizedMessage
                 }
             })
         }
@@ -86,7 +88,7 @@ class SearchFragmentViewModel @Inject constructor(private val productRepository:
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
-
+                    exception.value = t.localizedMessage
                 }
             })
         }
@@ -101,7 +103,7 @@ class SearchFragmentViewModel @Inject constructor(private val productRepository:
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
-
+                    exception.value = t.localizedMessage
                 }
             })
         }

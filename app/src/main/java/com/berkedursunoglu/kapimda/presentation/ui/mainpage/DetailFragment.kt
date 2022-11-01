@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.data.models.ProductItem
 import com.berkedursunoglu.kapimda.databinding.FragmentDetailBinding
@@ -41,6 +42,8 @@ class DetailFragment : Fragment() {
         var item = getJson()
         setField(item)
 
+
+
         binding.btnAddSize.setOnClickListener {
             itemCount ++
             binding.tvProductSize.text = itemCount.toString()
@@ -73,6 +76,10 @@ class DetailFragment : Fragment() {
                 viewModel.removeBasket(item.id)
             }
         }
+
+        viewModel.exception.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+        })
     }
 
     private fun getJson() : ProductItem{

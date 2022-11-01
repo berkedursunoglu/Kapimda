@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.berkedursunoglu.kapimda.data.models.BasketModel
 import com.berkedursunoglu.kapimda.databinding.BasketAdapterRawBinding
+import com.berkedursunoglu.kapimda.utils.BasketItemOnClickListener
 import com.berkedursunoglu.kapimda.utils.Extensions.getImage
 
 class BasketFragmentAdapter(var listener: BasketItemOnClickListener) : RecyclerView.Adapter<BasketViewHolder>() {
@@ -65,6 +66,3 @@ class BasketViewHolder(val binding: BasketAdapterRawBinding) : RecyclerView.View
 
 }
 
-interface BasketItemOnClickListener{
-    fun onClick(item: BasketModel, itemCount: Int)
-}

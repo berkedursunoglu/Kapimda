@@ -15,6 +15,7 @@ class ProfileFragmentViewModel:ViewModel() {
 
     val userName = MutableLiveData<String>()
     val userEmail = MutableLiveData<String>()
+    var exception = MutableLiveData<String>()
 
     fun setField(){
         viewModelScope.launch(Dispatchers.IO) {
@@ -23,8 +24,7 @@ class ProfileFragmentViewModel:ViewModel() {
                     userName.value = it.getString("username")
                     userEmail.value = it.getString("email")
                 }.addOnFailureListener {
-                    userName.value = "null"
-                    userEmail.value = "null"
+                    exception.value = it.localizedMessage
                 }
             }
         }

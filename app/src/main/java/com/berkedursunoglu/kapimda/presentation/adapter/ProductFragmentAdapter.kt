@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.berkedursunoglu.kapimda.data.models.ProductItem
 import com.berkedursunoglu.kapimda.databinding.ProductAdapterRawBinding
 import com.berkedursunoglu.kapimda.utils.Extensions.getImage
+import com.berkedursunoglu.kapimda.utils.ProductSetOnClickListener
 
 class ProductFragmentAdapter(val listener: ProductSetOnClickListener) : RecyclerView.Adapter<ProductViewHolder>() {
 
@@ -48,6 +49,4 @@ class ProductViewHolder(val binding:ProductAdapterRawBinding) : RecyclerView.Vie
     }
 }
 
-interface ProductSetOnClickListener{
-    fun goToDetail(item:ProductItem)
-}
+

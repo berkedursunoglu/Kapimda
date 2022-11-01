@@ -14,7 +14,7 @@ import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.data.models.BasketModel
 import com.berkedursunoglu.kapimda.databinding.FragmentBasketBinding
 import com.berkedursunoglu.kapimda.presentation.adapter.BasketFragmentAdapter
-import com.berkedursunoglu.kapimda.presentation.adapter.BasketItemOnClickListener
+import com.berkedursunoglu.kapimda.utils.BasketItemOnClickListener
 import com.berkedursunoglu.kapimda.presentation.ui.dialogs.BasketDialog
 import com.berkedursunoglu.kapimda.presentation.ui.dialogs.DialogListener
 import com.berkedursunoglu.kapimda.presentation.viewmodels.BasketFragmentViewModel
@@ -74,6 +74,11 @@ class BasketFragment : Fragment()  {
             }
 
         })
+
+        viewModel.exception.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+        })
+
     }
 
     override fun onDetach() {
