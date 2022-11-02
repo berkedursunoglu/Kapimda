@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.databinding.FragmentProfileBinding
 import com.berkedursunoglu.kapimda.presentation.ui.dialogs.LogoutDialog
 import com.berkedursunoglu.kapimda.presentation.viewmodels.ProfileFragmentViewModel
@@ -47,7 +48,7 @@ class ProfileFragment : Fragment() {
         })
 
         viewModel.exception.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(),it, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.error_message), Toast.LENGTH_SHORT).show()
         })
 
 

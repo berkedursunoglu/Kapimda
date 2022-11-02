@@ -133,7 +133,7 @@ class SearchFragment : Fragment() {
         }
 
         viewModel.exception.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(),it, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.error_message), Toast.LENGTH_SHORT).show()
         })
     }
 
@@ -143,6 +143,11 @@ class SearchFragment : Fragment() {
                 adapter.reset(it)
             })
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+
     }
 
 }
