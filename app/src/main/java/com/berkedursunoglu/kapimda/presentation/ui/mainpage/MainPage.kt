@@ -5,9 +5,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.replace
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -38,6 +36,8 @@ class MainPage : AppCompatActivity(){
         binding.btnBasket.setOnClickListener {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction().addToBackStack("ProductFragment")
+            fragmentManager.beginTransaction().addToBackStack("SearchFragment")
+            fragmentManager.beginTransaction().addToBackStack("DetailFragment")
             fragmentTransaction.replace(com.berkedursunoglu.kapimda.R.id.fragmentContainerViewBasket, BasketFragment()).commit()
             binding.fragmentContainerViewBasket.visibility = View.VISIBLE
             binding.bottomNavigationView.visibility = View.GONE
@@ -45,7 +45,7 @@ class MainPage : AppCompatActivity(){
     }
 
     fun initNavigation(){
-        val navHostFragment = supportFragmentManager.findFragmentById(com.berkedursunoglu.kapimda.R.id.fragmentContainerView2) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(com.berkedursunoglu.kapimda.R.id.fragmentContainer) as NavHostFragment
         val navController = navHostFragment.navController
         val navigationBottom = findViewById<BottomNavigationView>(com.berkedursunoglu.kapimda.R.id.bottomNavigationView)
         NavigationUI.setupWithNavController(navigationBottom,navController)

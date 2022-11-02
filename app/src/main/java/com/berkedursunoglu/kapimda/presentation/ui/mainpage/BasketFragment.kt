@@ -1,5 +1,6 @@
 package com.berkedursunoglu.kapimda.presentation.ui.mainpage
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -53,6 +54,7 @@ class BasketFragment : Fragment()  {
         var totalPrice = 0.0
         viewModel.getBasket()
         viewModel.basketList.observe(viewLifecycleOwner, Observer {
+            totalPrice = 0.0
             adapter.addItems(it)
             binding.basketRecyclerView.adapter = adapter
             it.forEach {
@@ -70,25 +72,34 @@ class BasketFragment : Fragment()  {
                 viewModel.deleteBasket()
                 binding.tvTotalPrice.visibility = View.GONE
                 binding.textView11.visibility = View.GONE
+                Toast.makeText(requireContext(),getString(R.string.succes_order), Toast.LENGTH_SHORT).show()
                 requireActivity().onBackPressed()
             }
 
         })
 
         viewModel.exception.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.error_message),Toast.LENGTH_SHORT).show()
         })
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("Basket.Fragment","onResume")
+    }
+
 
     override fun onDetach() {
         super.onDetach()
         Log.d("BasketFragment", "onDetach")
         var viewContainer:FragmentContainerView = requireActivity().findViewById(R.id.fragmentContainerViewBasket)
-        viewContainer.visibility = View.GONE
+        viewContainer.visibility = View.INVISIBLE
         var viewTabLayout:BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
         viewTabLayout.visibility = View.VISIBLE
     }
+
+
 
 
 }

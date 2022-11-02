@@ -3,6 +3,7 @@ package com.berkedursunoglu.kapimda.presentation.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -56,9 +57,23 @@ class LoginFragment : Fragment() {
                     requireActivity().finish()
                 }
                 override fun error(message: String) {
-                    Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
+                     errorToasFlow(message)
                 }
             })
+        }
+    }
+
+    fun errorToasFlow(message: String){
+        if(message.equals("There is no user record corresponding to this identifier. The user may have been deleted.")) {
+            Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
+        }else if (message.equals(getString(R.string.error_user_en))){
+            Toast.makeText(requireContext(),getString(R.string.error_user_tr),Toast.LENGTH_SHORT).show()
+        }else if (message.equals(getString(R.string.error_eposta_en))) {
+            Toast.makeText(requireContext(), getString(R.string.error_eposta_tr), Toast.LENGTH_SHORT).show()
+        }else if (message.equals(getString(R.string.error_password_en))) {
+            Toast.makeText(requireContext(), getString(R.string.error_password_tr), Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
 

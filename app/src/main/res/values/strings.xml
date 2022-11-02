@@ -11,4 +11,14 @@
     <string name="passwords_field_not_equal">Girdiğiniz şifreler aynı değil kontrol ediniz.</string>
     <string name="is_not_empty_fields">Alanlar Boş Bırakılamaz</string>
     <string name="is_buy">Satın Alma işlemini gerçekleştirmek istiyor musunuz?</string>
+    <string name="error_message">Bir hata meydana geldi.</string>
+    <string name="error_password_tr">Şifre geçersiz veya kullanıcının şifresi yok.</string>
+    <string name="error_password_en">The password is invalid or the user does not have a password.</string>
+    <string name="error_eposta_tr">E-posta adresi hatalı biçimlendirilmiş.</string>
+    <string name="error_eposta_en">The email address is badly formatted.</string>
+    <string name="error_user_tr">Bu tanımlayıcıya karşılık gelen kullanıcı kaydı yok. Kullanıcı silinmiş olabilir.</string>
+    <string name="error_user_en">There is no user record corresponding to this identifier. The user may have been deleted.</string>
+    <string name="error_already_use_eposta">E-posta adresi zaten başka bir hesap tarafından kullanılıyor.</string>
+    <string name="error_must_be_password">Verilen şifre geçersiz. Şifre en az 6 karakter olmalıdır</string>
+    <string name="succes_order">Siparişiniz verildi.</string>
 </resources>

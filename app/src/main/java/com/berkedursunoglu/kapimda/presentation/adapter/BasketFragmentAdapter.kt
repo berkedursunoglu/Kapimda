@@ -25,9 +25,12 @@ class BasketFragmentAdapter(var listener: BasketItemOnClickListener) : RecyclerV
         holder.bind(items[position],holder.itemView.context)
         var count:Int = Integer.parseInt(binding.tvProductCount.text.toString())
 
+
         holder.binding.btnAddSize.setOnClickListener {
             count ++
             binding.tvProductCount.text = count.toString()
+            val basketModel = BasketModel(count.toLong(),items[position].itemid,items[position].itemname,items[position].itemPic,items[position].itemPrice,items[position].itemtotalprice)
+            listener.onClick(basketModel,count)
 
         }
 
@@ -35,13 +38,12 @@ class BasketFragmentAdapter(var listener: BasketItemOnClickListener) : RecyclerV
             if (count != 1){
                 count --
                 binding.tvProductCount.text = count.toString()
+                val basketModel = BasketModel(count.toLong(),items[position].itemid,items[position].itemname,items[position].itemPic,items[position].itemPrice,items[position].itemtotalprice)
+                listener.onClick(basketModel,count)
             }
         }
 
-        holder.itemView.setOnClickListener {
-            val basketModel = BasketModel(count.toLong(),items[position].itemid,items[position].itemname,items[position].itemPic,items[position].itemPrice,items[position].itemtotalprice)
-            listener.onClick(basketModel,count)
-        }
+
     }
 
     override fun getItemCount(): Int {

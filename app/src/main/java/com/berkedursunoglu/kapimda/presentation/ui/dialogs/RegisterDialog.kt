@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.databinding.RegisterDialogBinding
 
 class RegisterDialog : DialogFragment() {
@@ -39,6 +40,12 @@ class RegisterDialog : DialogFragment() {
     fun error(error:String){
         binding.registerProgresbar.visibility = View.GONE
         binding.errorImage.visibility = View.VISIBLE
-        binding.tvResult.text = error
+        if (error.equals("The email address is badly formatted.")){
+            binding.tvResult.text = getString(R.string.error_eposta_tr)
+        }else if (error.equals("The email address is already in use by another account.")){
+            binding.tvResult.text =getString(R.string.error_already_use_eposta)
+        }else if (error.equals("The given password is invalid. [ Password should be at least 6 characters ]")){
+            binding.tvResult.text = getString(R.string.error_must_be_password)
+        }
     }
 }
