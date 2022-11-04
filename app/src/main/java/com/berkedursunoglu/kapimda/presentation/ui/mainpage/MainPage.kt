@@ -1,6 +1,7 @@
 package com.berkedursunoglu.kapimda.presentation.ui.mainpage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -17,9 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MainPage : AppCompatActivity(){
+class MainPage : AppCompatActivity() {
 
-    private lateinit var binding:ActivityMainPageBinding
+    private lateinit var binding: ActivityMainPageBinding
     private val viewModel: MainPageViewModel by viewModels()
 
 

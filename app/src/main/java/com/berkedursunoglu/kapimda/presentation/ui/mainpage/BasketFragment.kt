@@ -1,24 +1,25 @@
 package com.berkedursunoglu.kapimda.presentation.ui.mainpage
 
-import android.opengl.Visibility
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.data.models.BasketModel
 import com.berkedursunoglu.kapimda.databinding.FragmentBasketBinding
 import com.berkedursunoglu.kapimda.presentation.adapter.BasketFragmentAdapter
-import com.berkedursunoglu.kapimda.utils.BasketItemOnClickListener
 import com.berkedursunoglu.kapimda.presentation.ui.dialogs.BasketDialog
 import com.berkedursunoglu.kapimda.presentation.ui.dialogs.DialogListener
 import com.berkedursunoglu.kapimda.presentation.viewmodels.BasketFragmentViewModel
+import com.berkedursunoglu.kapimda.utils.BasketItemOnClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -83,12 +84,6 @@ class BasketFragment : Fragment()  {
         })
 
     }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("Basket.Fragment","onResume")
-    }
-
 
     override fun onDetach() {
         super.onDetach()
