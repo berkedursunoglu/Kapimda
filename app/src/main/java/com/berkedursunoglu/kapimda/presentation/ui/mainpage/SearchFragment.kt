@@ -10,6 +10,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.berkedursunoglu.kapimda.R
@@ -17,6 +18,7 @@ import com.berkedursunoglu.kapimda.data.models.ProductItem
 import com.berkedursunoglu.kapimda.databinding.FragmentSearchBinding
 import com.berkedursunoglu.kapimda.presentation.adapter.SearchFragmentAdapter
 import com.berkedursunoglu.kapimda.presentation.adapter.SearchSetOnClickListener
+import com.berkedursunoglu.kapimda.presentation.viewmodels.MainPageViewModel
 import com.berkedursunoglu.kapimda.presentation.viewmodels.SearchFragmentViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +29,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding:FragmentSearchBinding
     private val viewModel: SearchFragmentViewModel by viewModels()
     private lateinit var adapter:SearchFragmentAdapter
+    private lateinit var sharedViewModel: MainPageViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +42,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel = ViewModelProvider(requireActivity())[MainPageViewModel::class.java]
         binding.recyclerviewSearch.layoutManager = GridLayoutManager(requireContext(),2)
         viewModel.getAllProducts()
         binding.searchView.clearFocus()
@@ -135,6 +139,15 @@ class SearchFragment : Fragment() {
         viewModel.exception.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(),getString(R.string.error_message), Toast.LENGTH_SHORT).show()
         })
+
+        binding.btnBasketFromSearch.setOnClickListener {
+            val action = SearchFragmentDirections.actionSearchFragmentToBasketFragment()
+            it.findNavController().navigate(action)
+        }
+
+        sharedViewModel.price.observe(viewLifecycleOwner, Observer {
+            binding.tvBasketBalanceFromSearch.text = it.toString()
+        })
     }
 
     fun checkBoxListener(){
@@ -143,11 +156,6 @@ class SearchFragment : Fragment() {
                 adapter.reset(it)
             })
         }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-
     }
 
 }
