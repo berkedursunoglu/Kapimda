@@ -15,17 +15,17 @@
         android:id="@+id/ivProductPics"
         android:layout_width="234dp"
         android:layout_height="275dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/base_app_icon_512"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
     <TextView
         android:id="@+id/tvProductName"
         android:layout_width="372dp"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="TextView"
@@ -209,6 +209,55 @@
         app:layout_constraintStart_toEndOf="@+id/tvProductSize"
         app:layout_constraintTop_toTopOf="@+id/btnRemoveSize"
         app:srcCompat="@drawable/ic_baseline_add_24" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/app_base_color"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBasketBalanceFromDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="TL"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBasketFromDetail"
+        app:layout_constraintEnd_toStartOf="@+id/btnBasketFromDetail"
+        app:layout_constraintTop_toTopOf="@+id/btnBasketFromDetail"
+        tools:ignore="HardcodedText" />
+
+    <ImageButton
+        android:id="@+id/btnBasketFromDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00FF855F"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_shopping_basket_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

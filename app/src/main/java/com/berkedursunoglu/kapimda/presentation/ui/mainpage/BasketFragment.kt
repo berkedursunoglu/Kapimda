@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.data.models.BasketModel
 import com.berkedursunoglu.kapimda.databinding.FragmentBasketBinding
@@ -74,7 +75,8 @@ class BasketFragment : Fragment()  {
                 binding.tvTotalPrice.visibility = View.GONE
                 binding.textView11.visibility = View.GONE
                 Toast.makeText(requireContext(),getString(R.string.succes_order), Toast.LENGTH_SHORT).show()
-                requireActivity().onBackPressed()
+                val action = BasketFragmentDirections.actionBasketFragmentToProductsFragment("1")
+                view.findNavController().navigate(action)
             }
 
         })
@@ -84,17 +86,4 @@ class BasketFragment : Fragment()  {
         })
 
     }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d("BasketFragment", "onDetach")
-        var viewContainer:FragmentContainerView = requireActivity().findViewById(R.id.fragmentContainerViewBasket)
-        viewContainer.visibility = View.INVISIBLE
-        var viewTabLayout:BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
-        viewTabLayout.visibility = View.VISIBLE
-    }
-
-
-
-
 }

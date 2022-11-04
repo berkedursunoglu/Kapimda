@@ -16,6 +16,7 @@ import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.data.models.ProductItem
 import com.berkedursunoglu.kapimda.databinding.FragmentProductsBinding
 import com.berkedursunoglu.kapimda.presentation.adapter.ProductFragmentAdapter
+import com.berkedursunoglu.kapimda.presentation.viewmodels.MainPageViewModel
 import com.berkedursunoglu.kapimda.utils.ProductSetOnClickListener
 import com.berkedursunoglu.kapimda.presentation.viewmodels.ProductFragmentViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -28,6 +29,7 @@ class ProductsFragment : Fragment() {
     private val viewModel:ProductFragmentViewModel by viewModels()
     private lateinit var productAdapter:ProductFragmentAdapter
     private lateinit var binding:FragmentProductsBinding
+    private lateinit var sharedViewModel: MainPageViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,8 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel = ViewModelProvider(requireActivity())[MainPageViewModel::class.java]
+
         productAdapter = ProductFragmentAdapter(object :ProductSetOnClickListener{
             override fun goToDetail(item: ProductItem) {
                 val action = ProductsFragmentDirections.actionProductsFragmentToDetailFragment()
@@ -51,6 +55,8 @@ class ProductsFragment : Fragment() {
                 }
             }
 
+
+
         })
         binding.rvProduct.layoutManager = GridLayoutManager(requireContext(),2)
         viewModel.getAllProducts()
@@ -61,6 +67,15 @@ class ProductsFragment : Fragment() {
 
         viewModel.exception.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(),getString(R.string.error_message),Toast.LENGTH_SHORT).show()
+        })
+
+        binding.btnBasketFromProduct.setOnClickListener {
+            val action = ProductsFragmentDirections.actionProductsFragmentToBasketFragment()
+            it.findNavController().navigate(action)
+        }
+
+        sharedViewModel.price.observe(viewLifecycleOwner, Observer {
+            binding.tvBasketBalanceFromProduct.text = it.toString()
         })
     }
 

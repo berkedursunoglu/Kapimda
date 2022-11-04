@@ -23,26 +23,11 @@ class MainPage : AppCompatActivity() {
     private lateinit var binding: ActivityMainPageBinding
     private val viewModel: MainPageViewModel by viewModels()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main_page)
         initNavigation()
         viewModel.getTotalPrice()
-        viewModel.price.observe(this, Observer {
-            binding.tvBasketBalance.text = it.toString()
-        })
-
-        binding.btnBasket.setOnClickListener {
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction().addToBackStack("ProductFragment")
-            fragmentManager.beginTransaction().addToBackStack("SearchFragment")
-            fragmentManager.beginTransaction().addToBackStack("DetailFragment")
-            fragmentTransaction.replace(com.berkedursunoglu.kapimda.R.id.fragmentContainerViewBasket, BasketFragment()).commit()
-            binding.fragmentContainerViewBasket.visibility = View.VISIBLE
-            binding.bottomNavigationView.visibility = View.GONE
-        }
     }
 
     fun initNavigation(){

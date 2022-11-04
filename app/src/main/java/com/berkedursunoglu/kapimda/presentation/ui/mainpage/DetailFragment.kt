@@ -9,10 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
+import androidx.navigation.findNavController
 import com.berkedursunoglu.kapimda.R
 import com.berkedursunoglu.kapimda.data.models.ProductItem
 import com.berkedursunoglu.kapimda.databinding.FragmentDetailBinding
 import com.berkedursunoglu.kapimda.presentation.viewmodels.DetailFragmentViewModel
+import com.berkedursunoglu.kapimda.presentation.viewmodels.MainPageViewModel
 import com.berkedursunoglu.kapimda.utils.Extensions.getImage
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
@@ -22,7 +26,7 @@ class DetailFragment : Fragment() {
     private lateinit var binding:FragmentDetailBinding
     private var itemCount = 1
     private val viewModel: DetailFragmentViewModel by viewModels()
-
+    private lateinit var sharedViewModel:MainPageViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,11 +42,10 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel = ViewModelProvider(requireActivity())[MainPageViewModel::class.java]
         binding.tvProductSize.text = "1"
         var item = getJson()
         setField(item)
-
-
 
         binding.btnAddSize.setOnClickListener {
             itemCount ++
@@ -80,6 +83,15 @@ class DetailFragment : Fragment() {
         viewModel.exception.observe(viewLifecycleOwner, Observer {
             Toast.makeText(requireContext(),getString(R.string.error_message),Toast.LENGTH_SHORT).show()
         })
+
+        sharedViewModel.price.observe(viewLifecycleOwner, Observer {
+            binding.tvBasketBalanceFromDetail.text = it.toString()
+        })
+
+        binding.btnBasketFromDetail.setOnClickListener {
+            val action = DetailFragmentDirections.actionDetailFragmentToBasketFragment()
+            it.findNavController().navigate(action)
+        }
     }
 
     private fun getJson() : ProductItem{

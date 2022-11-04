@@ -34,6 +34,7 @@ class RegisterDialog : DialogFragment() {
     fun succes(){
         binding.registerProgresbar.visibility = View.GONE
         binding.succesImage.visibility = View.VISIBLE
+        binding.btnOkey.visibility = View.GONE
         binding.tvResult.text = "Başarılı bir şekilde kayıt olundu."
     }
 
