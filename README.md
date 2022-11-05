@@ -3,6 +3,19 @@
 ### Kapımda application is a shopping application prepared for the Android Kotlin bootcamp graduation project, which was made in partnership with Pazarama and Patika.dev.
 
 
+Libraries used in the application
+
+ - DataBinding
+ - Firebase
+ - Navigation Component
+ - Hilt
+ - ViewModel Lifecycle
+ - Retrofit
+ - Okhttp
+ - Gson
+ - Glide
+
+
 
 ![KapımdaApp](https://github.com/berkedursunoglu/Kapimda/blob/master/appimages/1.jpg?raw=true)
 ![KapımdaApp](https://github.com/berkedursunoglu/Kapimda/blob/master/appimages/2.jpg?raw=true)
