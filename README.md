@@ -1,6 +1,6 @@
 # Kapimda App
 
-## Shoping App
+### Kapımda application is a shopping application prepared for the Android Kotlin bootcamp graduation project, which was made in partnership with Pazarama and Patika.dev.
 
 
 
