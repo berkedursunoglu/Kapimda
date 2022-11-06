@@ -14,6 +14,7 @@ Libraries used in the application
  - Okhttp
  - Gson
  - Glide
+ - SharedPrefers
 
 
 
